@@ -1,13 +1,14 @@
 # ModelImageClassification
-
-# import numpy as np
 import torch
 from torcheval.metrics.functional import multiclass_accuracy
 from numpy.random import choice
 
-
 class Net(torch.nn.Module):
+    """Convolutional Neural Network class for image classification
+    """
     def __init__(self):
+        """Class constructor
+        """
         super(Net, self).__init__()
         self.conv1 = torch.nn.Conv2d(
             in_channels=1, out_channels=6, kernel_size=(5, 5), padding='same')
@@ -23,6 +24,14 @@ class Net(torch.nn.Module):
         self.mlp3 = torch.nn.Linear(in_features=84, out_features=10)
 
     def forward(self, inp):
+        """Forward pass
+
+        Args:
+            inp (torch.tensor): input of the network
+
+        Returns:
+            torch.tensor: output of the network
+        """
         x = self.conv1(inp)
         x = self.relu1(x)
         x = self.avgpool1(x)
@@ -38,6 +47,23 @@ class Net(torch.nn.Module):
     def training_SGD(
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha, verbose=False):
+        """SGD optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -81,6 +107,24 @@ class Net(torch.nn.Module):
     def training_Mom(
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha, beta, verbose=False):
+        """Momentum optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta (float): weightage that is going to assign to the past values of the gradient
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -126,6 +170,24 @@ class Net(torch.nn.Module):
     def training_NAG(
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha, beta, verbose=False):
+        """NAG optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta (float): weightage that is going to assign to the past values of the gradient
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -175,6 +237,24 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test,
             n_epochs, batch_size, batches_per_epoch,
             alpha=0.01, epsilon=1e-8, verbose=False):
+        """ADG optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate. Defaults to 0.01
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -222,6 +302,25 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha=0.01,
             gamma=0.9, epsilon=1e-8, verbose=False):
+        """RMS Prop optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate. Defaults to 0.01
+            gamma (float): decay factor. Defaults to 0.9
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -269,6 +368,24 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test,
             n_epochs, batch_size, batches_per_epoch,
             rho, epsilon=1e-8, verbose=False):
+        """AdaDelta optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            rho (float): decay factor
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -320,6 +437,26 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha, beta1, beta2,
             epsilon=1e-8, verbose=False):
+        """Adam optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta1 (float): exponential decay rate for the first moment estimate
+            beta2 (float): exponential decay rate for the second moment estimate
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -372,6 +509,26 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test, n_epochs, batch_size,
             batches_per_epoch, alpha, beta1, beta2,
             epsilon=1e-8, verbose=False):
+        """AMS optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta1 (float): exponential decay rate for the first moment estimate
+            beta2 (float): exponential decay rate for the second moment estimate
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -424,6 +581,26 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test, n_epochs,
             batch_size, batches_per_epoch, alpha, mu, nu,
             epsilon=1e-8, verbose=False):
+        """Nadam optimization algorhtm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            mu (float): exponential decay rate for the first moment estimate
+            nu (float): exponential decay rate for the second moment estimate
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
@@ -478,6 +655,27 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test, n_epochs, batch_size,
             batches_per_epoch, alpha, beta1, beta2, lambd,
             epsilon=1e-8, verbose=False):
+        """Adamax optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta1 (float): exponential decay rate for the first moment estimate
+            beta2 (float): exponential decay rate for the second moment estimate
+            lambd (float): regularization term
+            epsilon (float): stabilization parameter. Defaults to 1e-8
+            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy, test loss, test accuracy
+        """
         Accuracies = []
         Losses = []
         Accuracies_test = []
