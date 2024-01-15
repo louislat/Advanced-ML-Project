@@ -248,8 +248,8 @@ class Net(torch.nn.Module):
             n_epochs (int): number of epochs
             batch_size (int): batch size
             batches_per_epoch (int): number of batch per epoch
-            alpha (float): learning rate. Defaults to 0.01
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            alpha (float, optional): learning rate. Defaults to 0.01
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -314,8 +314,8 @@ class Net(torch.nn.Module):
             batch_size (int): batch size
             batches_per_epoch (int): number of batch per epoch
             alpha (float): learning rate. Defaults to 0.01
-            gamma (float): decay factor. Defaults to 0.9
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            gamma (float, optional): decay factor. Defaults to 0.9
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -380,7 +380,7 @@ class Net(torch.nn.Module):
             batch_size (int): batch size
             batches_per_epoch (int): number of batch per epoch
             rho (float): decay factor
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -451,7 +451,7 @@ class Net(torch.nn.Module):
             alpha (float): learning rate
             beta1 (float): exponential decay rate for the first moment estimate
             beta2 (float): exponential decay rate for the second moment estimate
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -523,7 +523,7 @@ class Net(torch.nn.Module):
             alpha (float): learning rate
             beta1 (float): exponential decay rate for the first moment estimate
             beta2 (float): exponential decay rate for the second moment estimate
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -595,7 +595,7 @@ class Net(torch.nn.Module):
             alpha (float): learning rate
             mu (float): exponential decay rate for the first moment estimate
             nu (float): exponential decay rate for the second moment estimate
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
@@ -670,7 +670,7 @@ class Net(torch.nn.Module):
             beta1 (float): exponential decay rate for the first moment estimate
             beta2 (float): exponential decay rate for the second moment estimate
             lambd (float): regularization term
-            epsilon (float): stabilization parameter. Defaults to 1e-8
+            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
             verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
 
         Returns:
