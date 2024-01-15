@@ -9,7 +9,7 @@ mae_loss = torch.nn.L1Loss()
 
 
 class Net(torch.nn.Module):
-    """Multi Layers Perceptrion for regression task
+    """Multi-Layer Perceptron for regression task
     """
     def __init__(self):
         """Class constructor

@@ -3,7 +3,7 @@ from numpy.random import choice
 
 
 class Net(torch.nn.Module):
-    """Multi Layers Perceptron for text classification
+    """Multi-Layer Perceptron for text classification
     """
     def __init__(self):
         """Class constructor

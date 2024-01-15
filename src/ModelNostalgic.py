@@ -256,7 +256,7 @@ class Net(torch.nn.Module):
         self, Loss, X_train, y_train, X_test, y_test,
             n_epochs, batch_size, batches_per_epoch, alpha,
             beta1, gamma, epsilon=1e-8, verbose=False):
-        """NOS optimization algorithm
+        """Nostalgic Adam optimization algorithm
 
         Args:
             Loss (torch.nn): loss function
