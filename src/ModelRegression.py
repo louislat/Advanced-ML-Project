@@ -53,10 +53,12 @@ class Net(torch.nn.Module):
             y_test (torch.tensor): test target
             n_epochs (int): number of epochs
             alpha (float): learning rate
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         if verbose:
             print('Launching SGD training of model')
@@ -112,11 +114,14 @@ class Net(torch.nn.Module):
             y_test (torch.tensor): test target
             n_epochs (int): number of epochs
             alpha (float): learning rate
-            beta (float): weightage that is going to assign to the past values of the gradient
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            beta (float): weightage that is going to assign to the past values
+            of the gradient
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -174,11 +179,14 @@ class Net(torch.nn.Module):
             y_test (torch.tensor): test target
             n_epochs (int): number of epochs
             alpha (float): learning rate
-            beta (float): weightage that is going to assign to the past values of the gradient
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            beta (float): weightage that is going to assign to the past values
+            of the gradient
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -238,11 +246,14 @@ class Net(torch.nn.Module):
             y_test (torch.tensor): test target
             n_epochs (int): number of epochs
             alpha (float, optional): learning rate. Defaults to 0.01
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -301,11 +312,14 @@ class Net(torch.nn.Module):
             n_epochs (int): number of epochs
             alpha (float, optional): learning rate. Defaults to 0.01
             gamma (float, optional): decay factor. Defaults to 0.9
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -363,11 +377,14 @@ class Net(torch.nn.Module):
             y_test (torch.tensor): test target
             n_epochs (int): number of epochs
             rho (float): decay factor
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -430,12 +447,16 @@ class Net(torch.nn.Module):
             n_epochs (int): number of epochs
             alpha (float, optional): learning rate. Defaults to 0.01
             beta1 (float): exponential decay rate for the first moment estimate
-            beta2 (float): exponential decay rate for the second moment estimate
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            beta2 (float): exponential decay rate for the second moment
+            estimate
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -497,12 +518,16 @@ class Net(torch.nn.Module):
             n_epochs (int): number of epochs
             alpha (float, optional): learning rate. Defaults to 0.01
             beta1 (float): exponential decay rate for the first moment estimate
-            beta2 (float): exponential decay rate for the second moment estimate
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            beta2 (float): exponential decay rate for the second
+            moment estimate
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -565,11 +590,14 @@ class Net(torch.nn.Module):
             alpha (float, optional): learning rate. Defaults to 0.01
             mu (float): exponential decay rate for the first moment estimate
             nu (float): exponential decay rate for the second moment estimate
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -633,13 +661,17 @@ class Net(torch.nn.Module):
             n_epochs (int): number of epochs
             alpha (float, optional): learning rate. Defaults to 0.01
             beta1 (float): exponential decay rate for the first moment estimate
-            beta2 (float): exponential decay rate for the second moment estimate
+            beta2 (float): exponential decay rate for the second
+            moment estimate
             lambd (float): regularization parameter
-            epsilon (float, optional): stabilization parameter. Defaults to 1e-8
-            verbose (bool, optional): parameter which prints messages on the standard output. Defaults to False.
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
 
         Returns:
-            Tuple[list, list, list, list]: train MSE, test MSE, train MAE, test MAE
+            Tuple[list, list, list, list]: train MSE, test MSE,
+            train MAE, test MAE
         """
         mse_train_epochs = []
         mse_test_epochs = []
@@ -669,6 +701,84 @@ class Net(torch.nn.Module):
                         M[i] = beta1 * M[i] + (1-beta1) * param.grad
                         U[i] = torch.maximum(beta2*U[i], torch.abs(g)+epsilon)
                         param -= alpha / ((1-beta1**(T+1))*U[i]) * M[i]
+                    mae_train = mae_loss(hat_yb, yb)
+            mse_train_epochs.append(loss.detach().numpy())
+            mae_train_epochs.append(mae_train)
+            with torch.no_grad():
+                hat_yt = self.forward(X_test)
+                hat_yt = hat_yt.reshape(hat_yt.shape[0],)
+                mse_test = mse_loss(hat_yt, y_test)
+                mae_test = mae_loss(hat_yt, y_test)
+                mse_test_epochs.append(mse_test)
+                mae_test_epochs.append(mae_test)
+            if verbose and T % 10 == 0:
+                print(("".join([
+                    'Epoch {} / {} : Loss train = {}',
+                    '| MAE train = {} | Loss test = {}',
+                    '| MAE test = {}'])).format(
+                        T+1, n_epochs, loss, mae_train, mse_test, mae_test))
+        return (
+            mse_train_epochs, mse_test_epochs,
+            mae_train_epochs, mae_test_epochs)
+
+    def training_NOS(
+        self, X_train, y_train, X_test, y_test,
+            n_epochs, alpha,
+            beta1, gamma, epsilon=1e-8, verbose=False):
+        """Nostalgic Adam optimization algorithm
+
+        Args:
+            Loss (torch.nn): loss function
+            X_train (torch.tensor): train predictors
+            y_train (torch.tensor): train target
+            X_test (torch.tensor): test predictors
+            y_test (torch.tensor): test target
+            n_epochs (int): number of epochs
+            batch_size (int): batch size
+            batches_per_epoch (int): number of batch per epoch
+            alpha (float): learning rate
+            beta1 (float): exponential decay rate for the first moment estimate
+            gamma (float): decay factor
+            epsilon (float, optional): stabilization parameter. Defaults to
+            1e-8
+            verbose (bool, optional): parameter which prints messages on the
+            standard output. Defaults to False.
+
+        Returns:
+            Tuple[list, list, list, list]: train loss, train accuracy,
+            test loss, test accuracy
+        """
+        mse_train_epochs = []
+        mse_test_epochs = []
+        mae_train_epochs = []
+        mae_test_epochs = []
+        if verbose:
+            print('Launching Nostalgic Adam training of model')
+            print('Number of parameters : {}'.format(
+                sum(p.numel() for p in self.parameters())))
+        M = [torch.zeros(param.shape) for param in self.parameters()]
+        V = [torch.zeros(param.shape) for param in self.parameters()]
+        B1, B2 = 0, 1
+        for T in range(1, n_epochs+1):
+            for _ in range(batches_per_epoch):
+                self.zero_grad()
+                batch_indexes = choice(
+                    range(y_train.shape[0]), size=batch_size, replace=False)
+                Xb, yb = X_train[batch_indexes], y_train[batch_indexes]
+                hat_yb = self.forward(Xb)  # Forward pass: Compute predicted y
+                hat_yb = hat_yb.reshape(hat_yb.shape[0],)
+                loss = mse_loss(hat_yb, yb)  # Forward pass : Compute the loss
+                loss.backward()  # Backpropagation
+                with torch.no_grad():
+                    for i, param in enumerate(self.parameters()):
+                        beta2 = B1/B2
+                        B1 += T**(-gamma)
+                        B2 += (T+1)**(-gamma)
+                        M[i] = beta1 * M[i] + (1-beta1) * param.grad
+                        V[i] = beta2 * V[i] + (1-beta2) * param.grad.pow(2)
+                        M_hat = (1/(1-beta1**(T+1))) * M[i]
+                        V_hat = (1/(1-beta2**(T+1))) * V[i]
+                        param -= alpha / (torch.sqrt(V_hat) + epsilon) * M_hat
                     mae_train = mae_loss(hat_yb, yb)
             mse_train_epochs.append(loss.detach().numpy())
             mae_train_epochs.append(mae_train)
