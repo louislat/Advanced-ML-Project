@@ -1,8 +1,20 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class LSTMClassifier(nn.Module):
+    """LSTM model for text classification
+    """
     def __init__(self, input_dim, embedding_dim, hidden_dim, output_dim):
+        """Class constructor
+
+        Args:
+            input_dim (int): number of words in the vocabulary
+            embedding_dim (int): size of the embedding
+            hidden_dim (int): number of hidden neurons
+            output_dim (int): dimension of the ouput
+        """
+        self.hidden_dim = hidden_dim
         super(LSTMClassifier, self).__init__()
         self.embedding = nn.Embedding(input_dim, embedding_dim)
         self.lstm = nn.LSTM(embedding_dim, hidden_dim)
@@ -44,7 +56,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).squeeze().float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -53,7 +65,7 @@ class LSTMClassifier(nn.Module):
 
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -97,7 +109,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -107,7 +119,7 @@ class LSTMClassifier(nn.Module):
 
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -154,7 +166,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha*beta*Momentums[i]
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -163,7 +175,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha*(1-beta)*param.grad
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -208,7 +220,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -217,7 +229,7 @@ class LSTMClassifier(nn.Module):
                         param -= torch.mul(alpha/(epsilon + torch.sqrt(S[i])), param.grad)
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -263,7 +275,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -273,7 +285,7 @@ class LSTMClassifier(nn.Module):
                             alpha/(epsilon + torch.sqrt(S[i])), param.grad)
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -322,7 +334,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -334,7 +346,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha / (torch.sqrt(V_hat) + epsilon) * M_hat
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -384,7 +396,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -395,7 +407,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha / (torch.sqrt(V_hat[i]) + epsilon)*M[i]
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -443,7 +455,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -457,7 +469,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha / (torch.sqrt(n_hat) + epsilon) * m_bar
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -507,7 +519,7 @@ class LSTMClassifier(nn.Module):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -520,7 +532,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha / ((1-beta1**(T+1))*U[i]) * M[i]
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -565,11 +577,11 @@ class LSTMClassifier(nn.Module):
         M = [torch.zeros(param.shape) for param in self.parameters()]
         V = [torch.zeros(param.shape) for param in self.parameters()]
         B1, B2 = 0, 1
-        for T in range(n_epochs):
+        for T in range(1, n_epochs+1):
             for x_train , y_train in train_loader:
                 hat_yb = self.forward(x_train)  # Forward pass: Compute predicted y
                 loss = Loss(hat_yb, y_train.unsqueeze(1).float())  # Forward pass : Compute the loss
-                acc = torch.mean(((hat_yb > 0.5).float() == y_train).float())
+                acc = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_train).float())
                 self.zero_grad()  # re-init the gradients
                 loss.backward()  # Backpropagation
                 with torch.no_grad():
@@ -584,7 +596,7 @@ class LSTMClassifier(nn.Module):
                         param -= alpha / (torch.sqrt(V_hat) + epsilon) * M_hat
             with torch.no_grad():
                 loss_t = Loss(self.forward(X_test), y_test.unsqueeze(1).float())
-                acc_t = torch.mean(((hat_yb > 0.5).float() == y_test).float())
+                acc_t = torch.mean(((F.sigmoid(hat_yb) > 0.5).float() == y_test).float())
 
             Accuracies.append(acc)
             Losses.append(loss)
@@ -592,6 +604,6 @@ class LSTMClassifier(nn.Module):
             Losses_test.append(loss_t)
 
             if verbose and T % 10 == 0:
-                print('Epoch {} / {} : Loss = {}'.format(T+1, n_epochs, Losses[-1]))
+                print('Epoch {} / {} : Loss = {}'.format(T, n_epochs, Losses[-1]))
             
         return Losses, Accuracies, Losses_test, Accuracies_test
