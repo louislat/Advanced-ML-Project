@@ -9,13 +9,13 @@ Python files where algorithms are implemented :
 
 * ```ModelImageClassification.py```: LeNet5 CNN and first-order stochastic algorithms for image classification.
 * ```ModelRegression.py```: MLP and first-order stochastic algorithms for regression.
-* ```ModelTextClassification.py```: LSTM and first-order stochastic algorithms for text classification.
+* ```ModelTextClassification.py```: MLP and first-order stochastic algorithms for text classification.
 
 Notebook files with experiments:
 
 * ``` ExperimentImageClassification.ipynb ```: LeNet5 CNN used on MNIST Dataset.
 * ``` ExperimentRegression.ipynb ```: MLP used on Boston Housing Dataset.
-* ``` ExperimentTextClassification.ipynb ```: LSTM used on IMBD Dataset.
+* ``` ExperimentTextClassification.ipynb ```: MLP used on IMBD Dataset.
   
 ## Getting Started
 
